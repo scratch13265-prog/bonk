@@ -73,7 +73,7 @@ function handleMessage(peer, raw) {
 
   const room = peer.roomCode && rooms.get(peer.roomCode);
   if (!room) { send(peer, { t: 'error', message: 'Сначала создай комнату или войди по коду.' }); return; }
-  if (!['st', 'hit', 'ch2'].includes(msg.t)) return;
+  if (!['st', 'hit', 'ch2', 'pvp-state', 'pvp-hit', 'pvp-rematch'].includes(msg.t)) return;
   const payload = { ...msg, id: peer.id };
   const encoded = Buffer.from(JSON.stringify(payload));
   if (encoded.length > 12 * 1024) return;
